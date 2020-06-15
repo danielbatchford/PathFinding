@@ -77,6 +77,8 @@ public class Grid {
         if (boxCord[0] < dim[0] || boxCord[1] > 0) {
             neighbors.add(boxes[boxCord[0] + 1][boxCord[1] - 1]);
         }
+
+
         return neighbors;
     }
 
@@ -107,7 +109,7 @@ public class Grid {
 
     }
 
-     int[] getDim() {
+    int[] getDim() {
         return dim;
     }
 

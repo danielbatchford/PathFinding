@@ -1,6 +1,8 @@
 package danielbatchford.pathfinding;
 
 
+import danielbatchford.pathfinding.options.Options;
+
 import java.util.List;
 
 public class PathFinder implements PathFindingIF {
@@ -9,16 +11,12 @@ public class PathFinder implements PathFindingIF {
     Grid grid;
     Options options;
 
-    public PathFinder() throws PathFindingException {
-        throw new PathFindingException("PathFinder() object should never be instantiated. Use new AStar() etc instead");
-    }
-
-    void assignVariables(Grid grid, Options options) throws PathFindingException {
+    public PathFinder(Grid grid, Options options) throws PathFindingException { //check to see if this can be stopped from being initialised
         this.grid = grid;
         this.options = options;
     }
 
-    void assignVariables(Grid grid) throws PathFindingException {
+    public PathFinder(Grid grid) throws PathFindingException { //check to see if this can be stopped from being initialised
         this.grid = grid;
         this.options = new Options('m', false);
     }
@@ -51,9 +49,9 @@ public class PathFinder implements PathFindingIF {
         int[] bC = b.getCord();
         switch (options.distanceMetric) {
             case 'm':
-                return Math.abs(aC[0]-bC[0]) + Math.abs(aC[1]-bC[1]);
+                return Math.abs(aC[0] - bC[0]) + Math.abs(aC[1] - bC[1]);
             case 'e':
-                return (float) Math.sqrt(Math.pow(aC[0]-bC[0],2)+Math.pow(aC[1]-bC[1],2));
+                return (float) Math.sqrt(Math.pow(aC[0] - bC[0], 2) + Math.pow(aC[1] - bC[1], 2));
             default:
                 throw new PathFindingException("Bad distance Metric used");
         }

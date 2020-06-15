@@ -1,9 +1,11 @@
-package danielbatchford.pathfinding;
+package danielbatchford.pathfinding.options;
+
+import danielbatchford.pathfinding.PathFindingException;
 
 public class Options {
 
-    char distanceMetric = 'm';
-    boolean allowDiagonal = false;
+    public char distanceMetric = 'm';
+    public boolean allowDiagonal = false;
 
 
     public Options(char distanceMetric, boolean allowDiagonal) throws PathFindingException {
