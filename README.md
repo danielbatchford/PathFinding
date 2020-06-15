@@ -1,1 +1,1 @@
-# Pathfinding Library For Java
+# Simple Pathfinding Library For Java
