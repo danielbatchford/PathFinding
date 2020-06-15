@@ -7,6 +7,12 @@ public class Box {
     private final int[] cord;
     private boolean walkable;
 
+    private Box parent;
+
+    private float f;
+    private float g;
+    private float h = 0; //make heuristic
+
     Box(int[] cord, boolean walkable) {
         this.cord = cord;
         this.walkable = walkable;
@@ -18,16 +24,49 @@ public class Box {
     }
 
 
-    boolean isWalkable() {
+    public boolean isWalkable() {
         return walkable;
     }
 
-    void setWalkable(boolean walkable) {
+    public void setWalkable(boolean walkable) {
         this.walkable = walkable;
     }
 
-    int[] getCord() {
+    public int[] getCord() {
         return cord;
+    }
+
+
+    float getF() {
+        return g + h;
+    }
+
+    void setF(float g) {
+        this.f = g + h;
+    }
+
+    float getG() {
+        return g;
+    }
+
+    void setG(float g) {
+        this.g = g;
+    }
+
+    float getH() {
+        return h;
+    }
+
+    void setH(float h) {
+        this.h = h;
+    }
+
+    Box getParent() {
+        return parent;
+    }
+
+    void setParent(Box parent) {
+        this.parent = parent;
     }
 
     @Override
@@ -37,6 +76,7 @@ public class Box {
         Box box = (Box) o;
         return Arrays.equals(cord, box.cord);
     }
+
 
     @Override
     public int hashCode() {

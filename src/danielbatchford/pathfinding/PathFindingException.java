@@ -2,8 +2,9 @@ package danielbatchford.pathfinding;
 
 public class PathFindingException extends Exception {
 
-    public PathFindingException(String message) {
-        System.out.println(message);
+    PathFindingException(String message) {
+        super(message);
+
 
         //Add more stuff here
     }
