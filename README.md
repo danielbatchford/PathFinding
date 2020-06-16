@@ -4,6 +4,7 @@ This is a lightweight java pathfinding library, applicable to 2d grids.
 ## Current Implementations:
 Currently, the following pathfinding methods are implemented:
 * A* Search
+* Breadth-First Search
 ## Installation
 To install, add `src\danielbatchford\pathfinding` to your build path.
 ## How to Use
