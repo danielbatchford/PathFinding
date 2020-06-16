@@ -3,7 +3,10 @@ package danielbatchford.pathfinding;
 import danielbatchford.pathfinding.exceptions.NoPathFoundException;
 import danielbatchford.pathfinding.exceptions.PathFindingException;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Set;
 
 import static danielbatchford.pathfinding.AStarHeuristic.calculate;
 
@@ -29,10 +32,7 @@ public class AStar extends PathFinder implements PathFindingIF {
 
         Set<Box> explored = new HashSet<Box>();
 
-        Box start = grid.getBoxes()[startCord[0]][startCord[1]];
-        Box end = grid.getBoxes()[endCord[0]][endCord[1]];
 
-        start.setParent(null);
         start.setG(0);
 
         queue.add(start);
@@ -67,23 +67,6 @@ public class AStar extends PathFinder implements PathFindingIF {
             }
         }
         throw new NoPathFoundException("No path was found from (" + startCord[0] + "," + startCord[1] + ") to (" + endCord[0] + "," + endCord[1] + ")");
-    }
-
-
-    private List<int[]> backTrace(Box box) {
-
-        if (box == null) return null;
-
-
-        List<int[]> route = new ArrayList<int[]>();
-
-        route.add(box.getCord());
-        while (box.getParent() != null) {
-            box = box.getParent();
-            route.add(box.getCord());
-        }
-
-        return route;
     }
 
 

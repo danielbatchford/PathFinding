@@ -3,12 +3,15 @@ package danielbatchford.pathfinding;
 
 import danielbatchford.pathfinding.exceptions.PathFindingException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PathFinder implements PathFindingIF {
 
 
     Options options;
+    Box start;
+    Box end;
 
     PathFinder() {
     }
@@ -35,8 +38,8 @@ public class PathFinder implements PathFindingIF {
             throw new PathFindingException("End coordinate (" + endCord[0] + "," + endCord[1] + ") was outside the grid range.");
         }
 
-        Box start = grid.getBoxes()[startCord[0]][startCord[1]];
-        Box end = grid.getBoxes()[endCord[0]][endCord[1]];
+        start = grid.getBoxes()[startCord[0]][startCord[1]];
+        end = grid.getBoxes()[endCord[0]][endCord[1]];
 
         if (!start.isWalkable()) {
             throw new PathFindingException("Start Square (" + start.getCord()[0] + "," + start.getCord()[1] + ") was not walkable.");
@@ -61,6 +64,22 @@ public class PathFinder implements PathFindingIF {
             default:
                 throw new PathFindingException("Bad distance Metric used");
         }
+    }
+
+    protected List<int[]> backTrace(Box box) {
+
+        if (box == null) return null;
+
+
+        List<int[]> route = new ArrayList<int[]>();
+
+        route.add(box.getCord());
+        while (box.getParent() != null) {
+            box = box.getParent();
+            route.add(box.getCord());
+        }
+
+        return route;
     }
 
 
