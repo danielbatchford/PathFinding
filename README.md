@@ -42,6 +42,6 @@ Use `grid.toConsole()` to preview a string of the current grid and `grid.toconso
 ## Setting your own Heuristic
 To set your own A* heuristic, modify the `calculate()` method in `danielbatchford.pathfinding.AStarHeuristic`. `from` represents the square to calculate from and `to` represents the goal square.
 
-## Notes
+## Contributing
 Feel free to open a pull request and submit improvements and bugfixes to this code. Please follow the style guide included. (`style.editorconfig`)
 
