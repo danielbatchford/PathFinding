@@ -1,4 +1,4 @@
-package danielbatchford.pathfinding;
+package danielbatchford.pathfinding.exceptions;
 
 public class PathFindingException extends Exception {
 

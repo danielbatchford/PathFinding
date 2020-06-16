@@ -1,19 +1,33 @@
 package danielbatchford.pathfinding;
 
 
+import danielbatchford.pathfinding.exceptions.PathFindingException;
+
 import java.util.List;
 
 public class PathFinder implements PathFindingIF {
 
 
-    Grid grid;
+
     Options options;
 
-    public PathFinder(Grid grid) throws PathFindingException { //check to see if this can be stopped from being initialised
-        this.grid = grid;
+    PathFinder() {
     }
 
-    public List<int[]> findPath(int[] startCord, int[] endCord) throws PathFindingException {
+    public List<int[]> findPath(int[] startCord, int[] endCord, Grid grid) throws PathFindingException {
+
+        if(startCord.length != 2) throw new PathFindingException("Start co-ordinate specified is not of size 2");
+        if(endCord.length != 2) throw new PathFindingException("End co-ordinate specified is not of size 2");
+
+        int[] dim = grid.getDimensions();
+
+        if (startCord[0] < 0 || startCord[0] >= dim[0] || startCord[1] < 0 || startCord[1] >= dim[1]) {
+            throw new PathFindingException("Start coordinate (" + startCord[0] + "," + startCord[1] + ") was outside the grid range.");
+        }
+
+        if (endCord[0] < 0 || endCord[0] >= dim[0] || endCord[1] < 0 || endCord[1] >= dim[1]) {
+            throw new PathFindingException("End coordinate (" + endCord[0] + "," + endCord[1] + ") was outside the grid range.");
+        }
 
         Box start = grid.getBoxes()[startCord[0]][startCord[1]];
         Box end = grid.getBoxes()[endCord[0]][endCord[1]];
@@ -25,14 +39,8 @@ public class PathFinder implements PathFindingIF {
             throw new PathFindingException("End Square (" + end.getCord()[0] + "," + end.getCord()[1] + ") was not walkable.");
         }
 
-        int[] dimensions = grid.getDimensions();
-        int[] cordStart = start.getCord(), cordEnd = end.getCord();
-        if (cordStart[0] < 0 || cordStart[0] >= dimensions[0] || cordStart[1] < 0 || cordStart[1] >= dimensions[1]) {
-            throw new PathFindingException("Start square exceeds grid dimensions " + dimensions[0] + " x " + dimensions[1]);
-        }
+        grid.setParentsToNull();
 
-        if (cordEnd[0] < 0 || cordEnd[0] >= dimensions[0] || cordEnd[1] < 0 || cordEnd[1] >= dimensions[1])
-            throw new PathFindingException("End square exceeds grid dimensions " + dimensions[0] + " x " + dimensions[1]);
         return null;
     }
 
