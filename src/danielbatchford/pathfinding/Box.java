@@ -38,27 +38,18 @@ public class Box {
 
 
     float getF() {
-        return g + h;
+        return f;
     }
 
-    void setF(float g) {
-        this.f = g + h;
+    void setF(float f){
+        this.f = f;
     }
-
     float getG() {
         return g;
     }
 
     void setG(float g) {
         this.g = g;
-    }
-
-    float getH() {
-        return h;
-    }
-
-    void setH(float h) {
-        this.h = h;
     }
 
     Box getParent() {

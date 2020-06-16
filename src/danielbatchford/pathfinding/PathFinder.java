@@ -1,8 +1,6 @@
 package danielbatchford.pathfinding;
 
 
-import danielbatchford.pathfinding.options.Options;
-
 import java.util.List;
 
 public class PathFinder implements PathFindingIF {
@@ -11,14 +9,8 @@ public class PathFinder implements PathFindingIF {
     Grid grid;
     Options options;
 
-    public PathFinder(Grid grid, Options options) throws PathFindingException { //check to see if this can be stopped from being initialised
-        this.grid = grid;
-        this.options = options;
-    }
-
     public PathFinder(Grid grid) throws PathFindingException { //check to see if this can be stopped from being initialised
         this.grid = grid;
-        this.options = new Options('m', false);
     }
 
     public List<int[]> findPath(int[] startCord, int[] endCord) throws PathFindingException {
@@ -44,10 +36,10 @@ public class PathFinder implements PathFindingIF {
         return null;
     }
 
-    protected float getDistance(Box a, Box b) throws PathFindingException {
+    public float getDistance(Box a, Box b) throws PathFindingException {
         int[] aC = a.getCord();
         int[] bC = b.getCord();
-        switch (options.distanceMetric) {
+        switch (Options.distanceMetric) {
             case 'm':
                 return Math.abs(aC[0] - bC[0]) + Math.abs(aC[1] - bC[1]);
             case 'e':
@@ -56,4 +48,6 @@ public class PathFinder implements PathFindingIF {
                 throw new PathFindingException("Bad distance Metric used");
         }
     }
+
+
 }
