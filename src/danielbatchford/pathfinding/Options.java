@@ -4,12 +4,12 @@ import danielbatchford.pathfinding.exceptions.PathFindingException;
 
 public class Options {
 
-    static char distanceMetric = 'e';
-    static boolean allowDiagonal = false;
+    char distanceMetric;
+    boolean allowDiagonal;
 
-    public static void setOptions(char distMetric, boolean allowDiag) throws PathFindingException {
-        allowDiagonal = allowDiag;
-        distanceMetric = distMetric;
+    public Options(char distanceMetric, boolean allowDiagonal) throws PathFindingException {
+        this.allowDiagonal = allowDiagonal;
+        this.distanceMetric = distanceMetric;
 
 
         if (!(distanceMetric == 'm' || distanceMetric == 'e')) {
@@ -17,6 +17,5 @@ public class Options {
         }
 
     }
-
 
 }

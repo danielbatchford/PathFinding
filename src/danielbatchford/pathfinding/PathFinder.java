@@ -8,16 +8,22 @@ import java.util.List;
 public class PathFinder implements PathFindingIF {
 
 
-
     Options options;
 
     PathFinder() {
     }
 
     public List<int[]> findPath(int[] startCord, int[] endCord, Grid grid) throws PathFindingException {
+        return findPath(startCord, endCord, grid, new Options('m', false));
+    }
 
-        if(startCord.length != 2) throw new PathFindingException("Start co-ordinate specified is not of size 2");
-        if(endCord.length != 2) throw new PathFindingException("End co-ordinate specified is not of size 2");
+
+    public List<int[]> findPath(int[] startCord, int[] endCord, Grid grid, Options options) throws PathFindingException {
+
+        this.options = options;
+
+        if (startCord.length != 2) throw new PathFindingException("Start co-ordinate specified is not of size 2");
+        if (endCord.length != 2) throw new PathFindingException("End co-ordinate specified is not of size 2");
 
         int[] dim = grid.getDimensions();
 
@@ -47,7 +53,7 @@ public class PathFinder implements PathFindingIF {
     public float getDistance(Box a, Box b) throws PathFindingException {
         int[] aC = a.getCord();
         int[] bC = b.getCord();
-        switch (Options.distanceMetric) {
+        switch (options.distanceMetric) {
             case 'm':
                 return Math.abs(aC[0] - bC[0]) + Math.abs(aC[1] - bC[1]);
             case 'e':

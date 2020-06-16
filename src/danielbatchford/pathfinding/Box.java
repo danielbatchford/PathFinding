@@ -5,13 +5,11 @@ import java.util.Arrays;
 class Box {
 
     private final int[] cord;
+    private final float h = 0; //make heuristic
     private boolean walkable;
-
     private Box parent;
-
     private float f;
     private float g;
-    private final float h = 0; //make heuristic
 
     Box(int[] cord, boolean walkable) {
         this.cord = cord;

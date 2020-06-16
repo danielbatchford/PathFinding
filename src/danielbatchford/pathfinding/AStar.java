@@ -2,9 +2,10 @@ package danielbatchford.pathfinding;
 
 import danielbatchford.pathfinding.exceptions.NoPathFoundException;
 import danielbatchford.pathfinding.exceptions.PathFindingException;
-import static danielbatchford.pathfinding.AStarHeuristic.calculate;
 
 import java.util.*;
+
+import static danielbatchford.pathfinding.AStarHeuristic.calculate;
 
 public class AStar extends PathFinder implements PathFindingIF {
 
@@ -12,9 +13,14 @@ public class AStar extends PathFinder implements PathFindingIF {
     public AStar() {
     }
 
-    @Override
     public List<int[]> findPath(int[] startCord, int[] endCord, Grid grid) throws PathFindingException {
         super.findPath(startCord, endCord, grid);
+        return findPath(startCord, endCord, grid, options);
+    }
+
+    @Override
+    public List<int[]> findPath(int[] startCord, int[] endCord, Grid grid, Options options) throws PathFindingException {
+        super.findPath(startCord, endCord, grid, options);
 
         PriorityQueue<Box> queue = new PriorityQueue<Box>((o1, o2) -> {
             if (o1.getF() == o2.getF()) return 0;
@@ -40,7 +46,7 @@ public class AStar extends PathFinder implements PathFindingIF {
                 return backTrace(workingBox);
             }
 
-            List<Box> neighbors = grid.getNeighbors(workingBox, Options.allowDiagonal);
+            List<Box> neighbors = grid.getNeighbors(workingBox, options.allowDiagonal);
 
             for (Box neighbor : neighbors) {
 
@@ -50,7 +56,7 @@ public class AStar extends PathFinder implements PathFindingIF {
                 if ((workingBox.getG() + getDistance(workingBox, neighbor)) < neighbor.getG() || !queue.contains(neighbor)) {
 
                     neighbor.setG(workingBox.getG() + getDistance(workingBox, neighbor));
-                    neighbor.setF(neighbor.getG() + calculate(workingBox,neighbor)); //heuristic here
+                    neighbor.setF(neighbor.getG() + calculate(workingBox, neighbor)); //heuristic here
 
                     neighbor.setParent(workingBox);
 
