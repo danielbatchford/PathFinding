@@ -6,12 +6,14 @@ import danielbatchford.pathfinding.exceptions.PathFindingException;
 
 import java.util.List;
 
-public class BreadthFirstSearch extends TreeSearch {
+public class DjikstraSearch extends PriorityQueueSearch {
+
 
     @Override
     public List<int[]> findPath(int[] startCord, int[] endCord, Grid grid, Options options) throws PathFindingException {
-        return super.findPath(startCord, endCord, grid, options, true);
+        return super.findPath(startCord, endCord, grid, options, false);
     }
 
 
 }
+

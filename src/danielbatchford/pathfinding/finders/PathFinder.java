@@ -4,6 +4,7 @@ package danielbatchford.pathfinding.finders;
 import danielbatchford.pathfinding.Box;
 import danielbatchford.pathfinding.Grid;
 import danielbatchford.pathfinding.Options;
+import danielbatchford.pathfinding.exceptions.NoPathFoundException;
 import danielbatchford.pathfinding.exceptions.PathFindingException;
 
 import java.util.*;
@@ -82,6 +83,12 @@ class PathFinder {
         }
         Collections.reverse(route);
         return route;
+    }
+
+    protected void throwNoPathFoundError() throws NoPathFoundException {
+        int[] startCord = start.getCord();
+        int[] endCord = end.getCord();
+        throw new NoPathFoundException("No path was found from (" + startCord[0] + "," + startCord[1] + ") to (" + endCord[0] + "," + endCord[1] + ")");
     }
 
 
