@@ -33,7 +33,7 @@ Finally, find a path:
 `List<int[]> myPath = myFinder.findPath(start, end, myGrid, myOptions`.  
 Note that `start` and `end` are 2d integer arrays representing co-ordinates of the form (x,y).  
 
-Use `grid.toConsole()` to preview a string of the current grid and `grid.toconsole(myPath)` to preview the grid and path. Here, `-` represents a walkable square, `X` represents an unwalkable square and `O` represents a square on a path. 
+Use `grid.toConsole()` to preview a string of the current grid and `grid.toconsole(myPath)` to preview the grid and path. Here, `·` represents a walkable square, `■` represents an unwalkable square and `O` represents a square on a path. 
 
 ### Sample console output
 `System.out.println(myGrid.toConsole(myPath))` gives an output such as the one below:

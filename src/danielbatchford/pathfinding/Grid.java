@@ -105,7 +105,7 @@ public class Grid {
             for (int y = 0; y < dim[1]; y++) {
                 Box b = boxes[x][y];
 
-                stringArr[x][y] = (b.isWalkable()) ? "-" : "X";
+                stringArr[x][y] = (b.isWalkable()) ? "·" : "■";
             }
         }
 
