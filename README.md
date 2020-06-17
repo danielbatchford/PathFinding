@@ -9,7 +9,6 @@ Currently, the following pathfinding methods are implemented:
 * Breadth First Search
 =======
 * Breadth-First Search
->>>>>>> cd34ddc2d52dc636e0b5f6f7f8acbcece1751367
 ## Installation
 To install, add `src\danielbatchford\pathfinding` to your build path.
 ## How to Use
