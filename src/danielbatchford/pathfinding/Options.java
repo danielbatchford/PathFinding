@@ -4,8 +4,8 @@ import danielbatchford.pathfinding.exceptions.PathFindingException;
 
 public class Options {
 
-    char distanceMetric;
-    boolean allowDiagonal;
+    private final char distanceMetric;
+    private final boolean allowDiagonal;
 
     public Options(char distanceMetric, boolean allowDiagonal) throws PathFindingException {
         this.allowDiagonal = allowDiagonal;
@@ -16,6 +16,14 @@ public class Options {
             throw new PathFindingException("Distance mode \"" + distanceMetric + "\" was not valid");
         }
 
+    }
+
+    public char getDistanceMetric() {
+        return distanceMetric;
+    }
+
+    public boolean isAllowDiagonal() {
+        return allowDiagonal;
     }
 
 }

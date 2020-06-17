@@ -2,7 +2,7 @@ package danielbatchford.pathfinding;
 
 import java.util.Arrays;
 
-class Box {
+public class Box {
 
     private final int[] cord;
     private final float h = 0; //make heuristic
@@ -35,27 +35,27 @@ class Box {
     }
 
 
-    float getF() {
+    public float getF() {
         return f;
     }
 
-    void setF(float f) {
+    public void setF(float f) {
         this.f = f;
     }
 
-    float getG() {
+    public float getG() {
         return g;
     }
 
-    void setG(float g) {
+    public void setG(float g) {
         this.g = g;
     }
 
-    Box getParent() {
+    public Box getParent() {
         return parent;
     }
 
-    void setParent(Box parent) {
+    public void setParent(Box parent) {
         this.parent = parent;
     }
 

@@ -4,6 +4,8 @@ This is a lightweight java pathfinding library, applicable to 2d grids.
 ## Current Implementations:
 Currently, the following pathfinding methods are implemented:
 * A* Search
+* Depth First Search
+* Breadth First Search
 ## Installation
 To install, add `src\danielbatchford\pathfinding` to your build path.
 ## How to Use
@@ -17,19 +19,18 @@ To set a square as walkable, use:
 `myGrid.setWalkable(int[] cordinates, false)`  
 
 Next, create a finder:  
-`PathFinder myFinder = new AStar();`  
+`PathFinder myFinder = new AStarSearch();`  
 
 Create an options object:  
-`Options myOptions = new Options('argument1', true/false)` where argument1 is the distance metric used and argument 2 is whether to allow diagonal movement.
+`Options myOptions = new Options(arg1, arg2)` where `arg1` is the distance metric used and `arg2` is whether to allow diagonal movement (boolean).
 
 Current distance metric implementations:
-* 'm' : Manhattan Distance.
-* 'e' : Euclidian Distance.
-
-If no options are specified then defaults `('m', false)` are used.  
+* `m` : Manhattan Distance
+* `e` : Euclidian Distance
 
 Finally, find a path:  
-`List<int[]> myPath = myFinder.findPath(int[] start, int[] end, myGrid, myOptions`.  
+`List<int[]> myPath = myFinder.findPath(start, end, myGrid, myOptions`.  
+Note that `start` and `end` are 2d integer arrays representing co-ordinates of the form (x,y).  
 
 Use `grid.toConsole()` to preview a string of the current grid and `grid.toconsole(myPath)` to preview the grid and path. Here, `-` represents a walkable square, `X` represents an unwalkable square and `O` represents a square on a path. 
 
@@ -39,7 +40,7 @@ Use `grid.toConsole()` to preview a string of the current grid and `grid.toconso
 ![SampleImage](sample.png?raw=true "Title")
 
 ## Setting your own Heuristic
-To set your own A* heuristic, modify the `calculate()` method in `danielbatchford.pathfinding.AStarHeuristic`. `from` represents the square to calculate from and `to` represents the goal square.
+To set your own A* heuristic, modify `danielbatchford.pathfinding.heuristics.AStarHeuristic.calculate()`. `from` represents the square to calculate from and `to` represents the goal square. Both of these are integer arrays representing 2d co-ordinates.
 
 ## Notes
 Feel free to open a pull request and submit improvements and bugfixes to this code. Please follow the style guide included. (`style.editorconfig`)

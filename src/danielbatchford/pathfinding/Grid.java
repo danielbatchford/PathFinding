@@ -3,6 +3,7 @@ package danielbatchford.pathfinding;
 import danielbatchford.pathfinding.exceptions.PathFindingException;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Grid {
@@ -12,6 +13,8 @@ public class Grid {
 
 
     public Grid(int[] dimensions) throws PathFindingException {
+
+        if (dimensions == null) throw new PathFindingException("Grid gimensions provided were null");
 
         if (dimensions.length != 2) throw new PathFindingException("Dimension specified is not of size 2");
 
@@ -43,14 +46,14 @@ public class Grid {
 
     }
 
-    int[] getDimensions() {
+    public int[] getDimensions() {
         return new int[]{boxes.length, boxes[0].length};
 
     }
 
-    List<Box> getNeighbors(Box box, boolean allowDiagonal) {
+    public List<Box> getNeighbors(Box box, boolean allowDiagonal) {
 
-        List<Box> neighbors = new ArrayList<Box>();
+        List<Box> neighbors = new ArrayList<>();
 
         int[] boxCord = box.getCord();
 
@@ -69,35 +72,28 @@ public class Grid {
 
         neighbors.remove(box.getParent()); //may not be needed
 
-        if (!allowDiagonal) {
-            return neighbors;
-        }
+        if (allowDiagonal) {
 
-        if (boxCord[0] > 0 && boxCord[1] > 0) {
-            neighbors.add(boxes[boxCord[0] - 1][boxCord[1] - 1]);
+
+            if (boxCord[0] > 0 && boxCord[1] > 0) {
+                neighbors.add(boxes[boxCord[0] - 1][boxCord[1] - 1]);
+            }
+            if (boxCord[0] < dim[0] - 1 && boxCord[1] < dim[1] - 1) {
+                neighbors.add(boxes[boxCord[0] + 1][boxCord[1] + 1]);
+            }
+            if (boxCord[0] > 0 && boxCord[1] < dim[1] - 1) {
+                neighbors.add(boxes[boxCord[0] - 1][boxCord[1] + 1]);
+            }
+            if (boxCord[0] < dim[0] - 1 && boxCord[1] > 0) {
+                neighbors.add(boxes[boxCord[0] + 1][boxCord[1] - 1]);
+            }
         }
-        if (boxCord[0] < dim[0] - 1 && boxCord[1] < dim[1] - 1) {
-            neighbors.add(boxes[boxCord[0] + 1][boxCord[1] + 1]);
-        }
-        if (boxCord[0] > 0 && boxCord[1] < dim[1] - 1) {
-            neighbors.add(boxes[boxCord[0] - 1][boxCord[1] + 1]);
-        }
-        if (boxCord[0] < dim[0] - 1 && boxCord[1] > 0) {
-            neighbors.add(boxes[boxCord[0] + 1][boxCord[1] - 1]);
-        }
+        Collections.shuffle(neighbors);
         return neighbors;
     }
 
-    void setParentsToNull() {
-        for (int x = 0; x < dim[0]; x++) {
-            for (int y = 0; y < dim[1]; y++) {
-                boxes[x][y].setParent(null);
-            }
-        }
-    }
-
     public String toConsole() throws PathFindingException {
-        return this.toConsole(new ArrayList<int[]>());
+        return this.toConsole(new ArrayList<>());
     }
 
     public String toConsole(List<int[]> path) throws PathFindingException {
@@ -131,7 +127,7 @@ public class Grid {
 
     }
 
-    Box[][] getBoxes() {
+    public Box[][] getBoxes() {
         return boxes;
     }
 
