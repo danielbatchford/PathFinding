@@ -4,8 +4,12 @@ This is a lightweight java pathfinding library, applicable to 2d grids.
 ## Current Implementations:
 Currently, the following pathfinding methods are implemented:
 * A* Search
+<<<<<<< HEAD
 * Depth First Search
 * Breadth First Search
+=======
+* Breadth-First Search
+>>>>>>> cd34ddc2d52dc636e0b5f6f7f8acbcece1751367
 ## Installation
 To install, add `src\danielbatchford\pathfinding` to your build path.
 ## How to Use
@@ -42,6 +46,6 @@ Use `grid.toConsole()` to preview a string of the current grid and `grid.toconso
 ## Setting your own Heuristic
 To set your own A* heuristic, modify `danielbatchford.pathfinding.heuristics.AStarHeuristic.calculate()`. `from` represents the square to calculate from and `to` represents the goal square. Both of these are integer arrays representing 2d co-ordinates.
 
-## Notes
+## Contributing
 Feel free to open a pull request and submit improvements and bugfixes to this code. Please follow the style guide included. (`style.editorconfig`)
 
