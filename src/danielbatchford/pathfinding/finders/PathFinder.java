@@ -32,7 +32,7 @@ public class PathFinder {
 
         this.options = options;
 
-        if (options.attachStateLogger()) {
+        if (options.attachStateLogger) {
             stateLogger = new StateLogger();
         }
 
@@ -70,7 +70,7 @@ public class PathFinder {
     protected float getDistance(Box a, Box b) throws PathFindingException {
         int[] aC = a.getCord();
         int[] bC = b.getCord();
-        switch (options.getDistanceMetric()) {
+        switch (options.distanceMetric) {
             case 'm':
                 return Math.abs(aC[0] - bC[0]) + Math.abs(aC[1] - bC[1]);
             case 'e':
@@ -100,7 +100,7 @@ public class PathFinder {
     }
 
     public StateLogger getStateLogger() throws PathFindingException {
-        if (options.attachStateLogger()) return stateLogger;
+        if (options.attachStateLogger) return stateLogger;
         throw new PathFindingException("A state logger was not attached. Attach it in options.");
     }
 }

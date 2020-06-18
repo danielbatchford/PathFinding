@@ -20,7 +20,7 @@ class TreeSearch extends PathFinder {
         openList = new ArrayDeque<>();
         openList.add(start);
 
-        if (options.attachStateLogger()) {
+        if (options.attachStateLogger) {
             stateLogger.add(new State(closedList, openList));
         }
 
@@ -32,7 +32,7 @@ class TreeSearch extends PathFinder {
                 return backTrace(workingBox);
             }
 
-            neighbors = grid.getNeighbors(workingBox, options.allowDiagonal());
+            neighbors = grid.getNeighbors(workingBox, options.allowDiagonal);
 
             neighbors.removeAll(closedList);
 
@@ -46,7 +46,7 @@ class TreeSearch extends PathFinder {
                 openList.addLast(n);
             }
 
-            if (options.attachStateLogger()) {
+            if (options.attachStateLogger) {
                 stateLogger.add(new State(closedList, openList));
             }
         }

@@ -27,7 +27,7 @@ class PriorityQueueSearch extends PathFinder {
         start.setF(0);
         openList.add(start);
 
-        if (options.attachStateLogger()) {
+        if (options.attachStateLogger) {
             stateLogger.add(new State(closedList, openList));
         }
 
@@ -41,7 +41,7 @@ class PriorityQueueSearch extends PathFinder {
                 return backTrace(workingBox);
             }
 
-            neighbors = grid.getNeighbors(workingBox, options.allowDiagonal());
+            neighbors = grid.getNeighbors(workingBox, options.allowDiagonal);
 
             for (Box n : neighbors) {
 
@@ -61,7 +61,7 @@ class PriorityQueueSearch extends PathFinder {
                 }
             }
 
-            if (options.attachStateLogger()) {
+            if (options.attachStateLogger) {
                 stateLogger.add(new State(closedList, openList));
             }
         }
