@@ -23,7 +23,7 @@ Next, create a finder:
 `PathFinder myFinder = new AStarSearch();`  
 
 Create an options object:  
-`Options myOptions = new Options(arg1, arg2, arg3)` where `arg1` is the distance metric used, `arg2` is whether to allow diagonal movement (boolean) and `arg3` is whether to attach a [State Logger](##-State-Logging).
+`Options myOptions = new Options(arg1, arg2, arg3)` where `arg1` is the distance metric used, `arg2` is whether to allow diagonal movement (boolean) and `arg3` is whether to attach a [State Logger](#-state-logging).
 
 Current distance metric implementations:
 * `m` : Manhattan Distance
