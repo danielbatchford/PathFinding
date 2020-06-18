@@ -14,10 +14,10 @@ Begin by creating a Grid:
 `Grid myGrid = new Grid(new int[]{x,y})` where x and y represent the grid width and height respectively.  
 
 By default, all squares on the grid will be assumed walkable. To set a square as unwalkable, use:  
-`myGrid.setWalkable(int[] cordinates, false)`   
+`myGrid.setWalkable(int[] co-ordinates, false)`   
 
 To set a square as walkable, use:  
-`myGrid.setWalkable(int[] cordinates, false)`  
+`myGrid.setWalkable(int[] co-ordinates, false)`  
 
 Next, create a finder:  
 `PathFinder myFinder = new AStarSearch();`  
@@ -30,7 +30,7 @@ Current distance metric implementations:
 * `e` : Euclidian Distance
 
 Finally, find a path:  
-`List<int[]> myPath = myFinder.findPath(start, end, myGrid, myOptions`.  
+`List<int[]> myPath = myFinder.findPath(start, end, myGrid, myOptions)`.  
 Note that `start` and `end` are 2d integer arrays representing co-ordinates of the form (x,y).  
 
 Use `grid.toConsole()` to preview a string of the current grid and `grid.toconsole(myPath)` to preview the grid and path. Here, `·` represents a walkable square, `■` represents an unwalkable square and `O` represents a square on a path. 
@@ -46,8 +46,8 @@ To set your own A* heuristic, modify `danielbatchford.pathfinding.heuristics.ASt
 ## State Logging
 This library allows search states to be logged, to allow support for GUI visualisations. A `State` object holds a specific open set and closed set state, for each step of a pathfinding search. This is stored in a `StateLogger` class. Using `myFinder.getStateLogger()` returns a `StateLogger` object. Contents can be accessed using `myStateLogger.getStates()`, which returns a list of `State` objects.
 
-The open list at a state can then be accessed using `myState.getVisited()`.  
-The closed list at a state can be accessed using `myState.getQueue()`.
+The open list at a state can then be accessed using `myState.getOpenList()`.  
+The closed list at a state can be accessed using `myState.getClosedList()`.
 
 A `toString()` overidden method is also included in the `StateLogger` class.
 
