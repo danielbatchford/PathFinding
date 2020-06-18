@@ -6,20 +6,12 @@ import java.util.*;
 
 public class State {
 
-    private final Set<Box> closedList;
-    private final List<Box> openList;
+    final Set<Box> closedList;
+    final List<Box> openList;
 
     public State(Set<Box> visited, Collection<Box> queue) {
         this.closedList = new HashSet<Box>(visited);
         this.openList = new ArrayList<Box>(queue);
-    }
-
-    public Set<Box> getClosedList() {
-        return this.closedList;
-    }
-
-    public Collection<Box> getOpenList() {
-        return this.openList;
     }
 
     @Override
