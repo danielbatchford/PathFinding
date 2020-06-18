@@ -9,7 +9,7 @@ Currently, the following pathfinding methods are implemented:
 * Breadth First Search
 ## Installation
 To install, add `src\danielbatchford\pathfinding` to your build path.
-## How to Use
+## Getting Started
 Begin by creating a Grid:  
 `Grid myGrid = new Grid(new int[]{x,y})` where x and y represent the grid width and height respectively.  
 
@@ -42,6 +42,14 @@ Use `grid.toConsole()` to preview a string of the current grid and `grid.toconso
 
 ## Setting your own Heuristic
 To set your own A* heuristic, modify `danielbatchford.pathfinding.heuristics.AStarHeuristic.calculate()`. `from` represents the square to calculate from and `to` represents the goal square. Both of these are integer arrays representing 2d co-ordinates.
+
+## State Logging
+This library allows search states to be logged, to allow support for GUI visualisations. A `State` object holds a specific open set and closed set state, for each step of a pathfinding search. This is stored in a `StateLogger` class. Using `myFinder.getStateLogger()` returns a `StateLogger` object. Contents can be accessed using `myStateLogger.getStates()`, which returns a list of `State` objects.
+
+The open list at a state can then be accessed using `myState.getVisited()`.  
+The closed list at a state can be accessed using `myState.getQueue()`.
+
+A `toString()` overidden method is also included in the `StateLogger` class.
 
 ## Contributing
 Feel free to open a pull request and submit improvements and bugfixes to this code. Please follow the style guide included. (`style.editorconfig`)
