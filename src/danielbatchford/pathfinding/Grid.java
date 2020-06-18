@@ -92,13 +92,12 @@ public class Grid {
         return neighbors;
     }
 
-    public String toConsole() throws PathFindingException {
-        return this.toConsole(new ArrayList<>());
+    @Override
+    public String toString(){
+        return this.toString(new ArrayList<>());
     }
 
-    public String toConsole(List<int[]> path) throws PathFindingException {
-
-        if (path == null) throw new PathFindingException("Called toString() on a null path");
+    public String toString(List<int[]> path){
 
         String[][] stringArr = new String[dim[0]][dim[1]];
         for (int x = 0; x < dim[0]; x++) {

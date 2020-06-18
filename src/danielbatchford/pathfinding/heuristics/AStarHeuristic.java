@@ -9,6 +9,6 @@ public class AStarHeuristic {
         int[] cordFrom = from.getCord();
         int[] cordTo = to.getCord();
 
-        return Math.abs(cordFrom[0] + cordTo[0]) + Math.abs(cordFrom[1] + cordTo[1]);
+        return Math.abs(cordFrom[0] - cordTo[0]) + Math.abs(cordFrom[1] - cordTo[1]);
     }
 }

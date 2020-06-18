@@ -1,11 +1,11 @@
 package danielbatchford.pathfinding;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Box {
 
     private final int[] cord;
-    private final float h = 0; //make heuristic
     private boolean walkable;
     private Box parent;
     private float f;
@@ -73,5 +73,8 @@ public class Box {
         return Arrays.hashCode(cord);
     }
 
-
+@Override
+    public String toString(){
+        return "("+cord[0]+","+cord[1]+")";
+}
 }

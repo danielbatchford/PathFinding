@@ -6,10 +6,12 @@ public class Options {
 
     private final char distanceMetric;
     private final boolean allowDiagonal;
+    private final boolean attachStateLogger;
 
-    public Options(char distanceMetric, boolean allowDiagonal) throws PathFindingException {
+    public Options(char distanceMetric, boolean allowDiagonal, boolean attachStateLogger) throws PathFindingException {
         this.allowDiagonal = allowDiagonal;
         this.distanceMetric = distanceMetric;
+        this.attachStateLogger = attachStateLogger;
 
 
         if (!(distanceMetric == 'm' || distanceMetric == 'e')) {
@@ -18,11 +20,15 @@ public class Options {
 
     }
 
+    public boolean attachStateLogger() {
+        return attachStateLogger;
+    }
+
     public char getDistanceMetric() {
         return distanceMetric;
     }
 
-    public boolean isAllowDiagonal() {
+    public boolean allowDiagonal() {
         return allowDiagonal;
     }
 

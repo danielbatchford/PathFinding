@@ -6,17 +6,19 @@ import danielbatchford.pathfinding.Grid;
 import danielbatchford.pathfinding.Options;
 import danielbatchford.pathfinding.exceptions.NoPathFoundException;
 import danielbatchford.pathfinding.exceptions.PathFindingException;
+import danielbatchford.pathfinding.statelogging.StateLogger;
 
 import java.util.*;
 
-class PathFinder {
+public class PathFinder {
 
-    Options options;
-    Box start;
-    Box end;
-    Set<Box> visited;
+    protected Options options;
+    protected Box start;
+    protected Box end;
+    protected Set<Box> visited;
+    protected StateLogger stateLogger;
 
-    protected List<int[]> findPath(int[] startCord, int[] endCord, Grid grid, Options options) throws PathFindingException {
+    public List<int[]> findPath(int[] startCord, int[] endCord, Grid grid, Options options) throws PathFindingException {
 
         if (startCord == null) throw new PathFindingException("Start co-ordinate was null");
         if (endCord == null) throw new PathFindingException("End co-ordinate was null");
@@ -25,6 +27,9 @@ class PathFinder {
 
         this.options = options;
 
+        if (options.attachStateLogger()) {
+            stateLogger = new StateLogger();
+        }
 
         if (startCord.length != 2) throw new PathFindingException("Start co-ordinate specified is not of size 2");
         if (endCord.length != 2) throw new PathFindingException("End co-ordinate specified is not of size 2");
@@ -43,10 +48,10 @@ class PathFinder {
         end = grid.getBoxes()[endCord[0]][endCord[1]];
 
         if (!start.isWalkable()) {
-            throw new PathFindingException("Start Square (" + start.getCord()[0] + "," + start.getCord()[1] + ") was not walkable.");
+            throw new PathFindingException("Start Square "+start.toString()+" was not walkable.");
         }
         if (!end.isWalkable()) {
-            throw new PathFindingException("End Square (" + end.getCord()[0] + "," + end.getCord()[1] + ") was not walkable.");
+            throw new PathFindingException("End Square "+end.toString()+" was not walkable.");
         }
 
         start.setParent(null);
@@ -91,5 +96,8 @@ class PathFinder {
         throw new NoPathFoundException("No path was found from (" + startCord[0] + "," + startCord[1] + ") to (" + endCord[0] + "," + endCord[1] + ")");
     }
 
-
+    public StateLogger getStateLogger() throws PathFindingException{
+        if(options.attachStateLogger()) return stateLogger;
+        throw new PathFindingException("A state logger was not attached. Attach it in options.");
+    }
 }

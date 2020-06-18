@@ -4,6 +4,7 @@ import danielbatchford.pathfinding.Box;
 import danielbatchford.pathfinding.Grid;
 import danielbatchford.pathfinding.Options;
 import danielbatchford.pathfinding.exceptions.PathFindingException;
+import danielbatchford.pathfinding.statelogging.State;
 
 import java.util.List;
 import java.util.PriorityQueue;
@@ -14,7 +15,7 @@ class PriorityQueueSearch extends PathFinder {
 
     ;
 
-    protected List<int[]> findPath(int[] startCord, int[] endCord, Grid grid, Options options, boolean useHeuristic) throws PathFindingException {
+    public List<int[]> findPath(int[] startCord, int[] endCord, Grid grid, Options options, boolean useHeuristic) throws PathFindingException {
         super.findPath(startCord, endCord, grid, options);
 
         PriorityQueue<Box> queue = new PriorityQueue<>((o1, o2) -> {
@@ -23,7 +24,10 @@ class PriorityQueueSearch extends PathFinder {
         });
 
         start.setG(0);
+        start.setF(0);
         queue.add(start);
+
+        if(options.attachStateLogger()) stateLogger.add(new State(visited,queue));
 
         while (!(queue.isEmpty())) {
 
@@ -34,7 +38,7 @@ class PriorityQueueSearch extends PathFinder {
                 return backTrace(workingBox);
             }
 
-            List<Box> neighbors = grid.getNeighbors(workingBox, options.isAllowDiagonal());
+            List<Box> neighbors = grid.getNeighbors(workingBox, options.allowDiagonal());
 
             for (Box n : neighbors) {
 
@@ -53,6 +57,8 @@ class PriorityQueueSearch extends PathFinder {
                     }
                 }
             }
+
+            if(options.attachStateLogger()) stateLogger.add(new State(visited,queue));
         }
         throwNoPathFoundError();
         return null;

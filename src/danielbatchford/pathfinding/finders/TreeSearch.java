@@ -4,6 +4,7 @@ import danielbatchford.pathfinding.Box;
 import danielbatchford.pathfinding.Grid;
 import danielbatchford.pathfinding.Options;
 import danielbatchford.pathfinding.exceptions.PathFindingException;
+import danielbatchford.pathfinding.statelogging.State;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -13,11 +14,13 @@ class TreeSearch extends PathFinder {
 
     protected Deque<Box> queue;
 
-    protected List<int[]> findPath(int[] startCord, int[] endCord, Grid grid, Options options, boolean pollFirstOrLast) throws PathFindingException {
+    public List<int[]> findPath(int[] startCord, int[] endCord, Grid grid, Options options, boolean pollFirstOrLast) throws PathFindingException {
         super.findPath(startCord, endCord, grid, options);
 
         queue = new ArrayDeque<>();
         queue.add(start);
+
+        if(options.attachStateLogger()) stateLogger.add(new State(visited,queue));
 
         while (!queue.isEmpty()) {
 
@@ -27,7 +30,7 @@ class TreeSearch extends PathFinder {
                 return backTrace(workingBox);
             }
 
-            List<Box> neighbors = grid.getNeighbors(workingBox, options.isAllowDiagonal());
+            List<Box> neighbors = grid.getNeighbors(workingBox, options.allowDiagonal());
 
             neighbors.removeAll(visited);
 
@@ -40,6 +43,8 @@ class TreeSearch extends PathFinder {
                 n.setParent(workingBox);
                 queue.addLast(n);
             }
+
+            if(options.attachStateLogger()) stateLogger.add(new State(visited,queue));
         }
 
         throwNoPathFoundError();
