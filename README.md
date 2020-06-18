@@ -43,7 +43,7 @@ Use `grid.toConsole()` to preview a string of the current grid and `grid.toconso
 ## Setting your own Heuristic
 To set your own A* heuristic, modify `danielbatchford.pathfinding.heuristics.AStarHeuristic.calculate()`.  
 
-`from` represents the square to calculate from and `to` represents the goal square. Both of these are integer arrays representing 2d co-ordinates.
+Here, `from` represents the square to calculate from and `to` represents the goal square. Both of these are integer arrays representing 2d co-ordinates.
 
 ## State Logging
 This library allows search states to be logged, to allow support for GUI visualisations. A `State` object holds a specific open and closed list. This is stored in a `StateLogger` class, which holds a list of `State` objects.. Using `myFinder.getStateLogger()` returns a `StateLogger` object. Contents can be accessed using `myStateLogger.getStates()`, which returns a list of `State` objects.
