@@ -2,9 +2,9 @@ package danielbatchford.pathfinding.finders;
 
 import danielbatchford.pathfinding.Box;
 import danielbatchford.pathfinding.Grid;
-import danielbatchford.pathfinding.Options;
 import danielbatchford.pathfinding.exceptions.PathFindingException;
 import danielbatchford.pathfinding.statelogging.State;
+import danielbatchford.pathfinding.util.Options;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -14,7 +14,7 @@ class TreeSearch extends PathFinder {
 
     protected Deque<Box> openList;
 
-    public List<int[]> findPath(int[] startCord, int[] endCord, Grid grid, Options options, boolean pollFirstOrLast) throws PathFindingException {
+    protected List<int[]> findPath(int[] startCord, int[] endCord, Grid grid, Options options, boolean pollFirstOrLast) throws PathFindingException {
         super.findPath(startCord, endCord, grid, options);
 
         openList = new ArrayDeque<>();

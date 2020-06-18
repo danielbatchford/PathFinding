@@ -2,9 +2,9 @@ package danielbatchford.pathfinding.finders;
 
 import danielbatchford.pathfinding.Box;
 import danielbatchford.pathfinding.Grid;
-import danielbatchford.pathfinding.Options;
 import danielbatchford.pathfinding.exceptions.PathFindingException;
 import danielbatchford.pathfinding.statelogging.State;
+import danielbatchford.pathfinding.util.Options;
 
 import java.util.List;
 import java.util.PriorityQueue;
@@ -15,7 +15,7 @@ class PriorityQueueSearch extends PathFinder {
 
     PriorityQueue<Box> openList;
 
-    public List<int[]> findPath(int[] startCord, int[] endCord, Grid grid, Options options, boolean useHeuristic) throws PathFindingException {
+    protected List<int[]> findPath(int[] startCord, int[] endCord, Grid grid, Options options, boolean useHeuristic) throws PathFindingException {
         super.findPath(startCord, endCord, grid, options);
 
         openList = new PriorityQueue<>((o1, o2) -> {

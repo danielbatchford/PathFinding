@@ -3,10 +3,10 @@ package danielbatchford.pathfinding.finders;
 
 import danielbatchford.pathfinding.Box;
 import danielbatchford.pathfinding.Grid;
-import danielbatchford.pathfinding.Options;
 import danielbatchford.pathfinding.exceptions.NoPathFoundException;
 import danielbatchford.pathfinding.exceptions.PathFindingException;
 import danielbatchford.pathfinding.statelogging.StateLogger;
+import danielbatchford.pathfinding.util.Options;
 
 import java.util.*;
 
@@ -18,6 +18,10 @@ public class PathFinder {
     protected Set<Box> closedList;
     protected StateLogger stateLogger;
     List<Box> neighbors;
+
+    protected PathFinder() {
+
+    }
 
     public List<int[]> findPath(int[] startCord, int[] endCord, Grid grid, Options options) throws PathFindingException {
 

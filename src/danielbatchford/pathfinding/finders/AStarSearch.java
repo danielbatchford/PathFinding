@@ -1,8 +1,8 @@
 package danielbatchford.pathfinding.finders;
 
 import danielbatchford.pathfinding.Grid;
-import danielbatchford.pathfinding.Options;
 import danielbatchford.pathfinding.exceptions.PathFindingException;
+import danielbatchford.pathfinding.util.Options;
 
 import java.util.List;
 

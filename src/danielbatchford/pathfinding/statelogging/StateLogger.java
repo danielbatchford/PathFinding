@@ -16,7 +16,7 @@ public class StateLogger {
     }
 
     @Override
-    public String toString() { //fix this
+    public String toString() {
 
         StringBuilder sb = new StringBuilder();
 
