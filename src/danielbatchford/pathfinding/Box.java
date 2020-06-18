@@ -75,6 +75,6 @@ public class Box {
 
 @Override
     public String toString(){
-        return "("+cord[0]+","+cord[1]+")";
+        return "(" + cord[0] + "," + cord[1] + ")";
 }
 }

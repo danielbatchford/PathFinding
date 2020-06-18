@@ -22,13 +22,10 @@ public class StateLogger {
         StringBuilder sb = new StringBuilder();
 
 
-        for (int i =0, max = states.size(); i < max; i++){
+        for (int i = 0, max = states.size(); i < max; i++){
             State state = states.get(i);
-            sb.append("\n\nState ").append(i).append(".\nVisited: ");
-            for (Box b: state.getVisited()) sb.append(b.toString()).append(" ");
-            sb.append("\nQueue: ");
-            for (Box b: state.getQueue()) sb.append(b.toString()).append(" ");
 
+            sb.append("\n\nState ").append(i).append(state.toString());
         }
         return sb.toString();
     }
