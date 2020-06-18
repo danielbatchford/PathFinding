@@ -15,8 +15,9 @@ public class PathFinder {
     protected Options options;
     protected Box start;
     protected Box end;
-    protected Set<Box> visited;
+    protected Set<Box> closedList;
     protected StateLogger stateLogger;
+    List<Box> neighbors;
 
     public List<int[]> findPath(int[] startCord, int[] endCord, Grid grid, Options options) throws PathFindingException {
 
@@ -48,16 +49,16 @@ public class PathFinder {
         end = grid.getBoxes()[endCord[0]][endCord[1]];
 
         if (!start.isWalkable()) {
-            throw new PathFindingException("Start Square "+start.toString()+" was not walkable.");
+            throw new PathFindingException("Start Square " + start.toString() + " was not walkable.");
         }
         if (!end.isWalkable()) {
-            throw new PathFindingException("End Square "+end.toString()+" was not walkable.");
+            throw new PathFindingException("End Square " + end.toString() + " was not walkable.");
         }
 
         start.setParent(null);
 
-        visited = new HashSet<>();
-        visited.add(start);
+        closedList = new HashSet<>();
+        closedList.add(start);
 
         return null;
     }
@@ -91,13 +92,11 @@ public class PathFinder {
     }
 
     protected void throwNoPathFoundError() throws NoPathFoundException {
-        int[] startCord = start.getCord();
-        int[] endCord = end.getCord();
-        throw new NoPathFoundException("No path was found from (" + startCord[0] + "," + startCord[1] + ") to (" + endCord[0] + "," + endCord[1] + ")");
+        throw new NoPathFoundException("No path was found from " + start.toString() + " to (" + end.toString());
     }
 
-    public StateLogger getStateLogger() throws PathFindingException{
-        if(options.attachStateLogger()) return stateLogger;
+    public StateLogger getStateLogger() throws PathFindingException {
+        if (options.attachStateLogger()) return stateLogger;
         throw new PathFindingException("A state logger was not attached. Attach it in options.");
     }
 }

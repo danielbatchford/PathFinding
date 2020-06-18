@@ -1,7 +1,6 @@
 package danielbatchford.pathfinding;
 
 import java.util.Arrays;
-import java.util.Scanner;
 
 public class Box {
 
@@ -73,8 +72,8 @@ public class Box {
         return Arrays.hashCode(cord);
     }
 
-@Override
-    public String toString(){
+    @Override
+    public String toString() {
         return "(" + cord[0] + "," + cord[1] + ")";
-}
+    }
 }

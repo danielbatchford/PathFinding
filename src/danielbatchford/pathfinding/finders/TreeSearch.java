@@ -12,23 +12,21 @@ import java.util.List;
 
 class TreeSearch extends PathFinder {
 
-    protected Deque<Box> queue;
+    protected Deque<Box> openList;
 
     public List<int[]> findPath(int[] startCord, int[] endCord, Grid grid, Options options, boolean pollFirstOrLast) throws PathFindingException {
         super.findPath(startCord, endCord, grid, options);
 
-        queue = new ArrayDeque<>();
-        queue.add(start);
+        openList = new ArrayDeque<>();
+        openList.add(start);
 
-        if(options.attachStateLogger()){
-            stateLogger.add(new State(visited,queue));
+        if (options.attachStateLogger()) {
+            stateLogger.add(new State(closedList, openList));
         }
 
-        List<Box> neighbors;
+        while (!openList.isEmpty()) {
 
-        while (!queue.isEmpty()) {
-
-            Box workingBox = (pollFirstOrLast) ? queue.pollFirst() : queue.pollLast();
+            Box workingBox = (pollFirstOrLast) ? openList.pollFirst() : openList.pollLast();
 
             if (workingBox.equals(end)) {
                 return backTrace(workingBox);
@@ -36,20 +34,20 @@ class TreeSearch extends PathFinder {
 
             neighbors = grid.getNeighbors(workingBox, options.allowDiagonal());
 
-            neighbors.removeAll(visited);
+            neighbors.removeAll(closedList);
 
             for (Box n : neighbors) {
 
                 if (!n.isWalkable()) {
                     continue;
                 }
-                visited.add(n);
+                closedList.add(n);
                 n.setParent(workingBox);
-                queue.addLast(n);
+                openList.addLast(n);
             }
 
-            if(options.attachStateLogger()){
-                stateLogger.add(new State(visited,queue));
+            if (options.attachStateLogger()) {
+                stateLogger.add(new State(closedList, openList));
             }
         }
 

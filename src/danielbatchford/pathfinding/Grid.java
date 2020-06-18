@@ -93,11 +93,11 @@ public class Grid {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return this.toString(new ArrayList<>());
     }
 
-    public String toString(List<int[]> path){
+    public String toString(List<int[]> path) {
 
         String[][] stringArr = new String[dim[0]][dim[1]];
         for (int x = 0; x < dim[0]; x++) {

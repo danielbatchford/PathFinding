@@ -13,30 +13,29 @@ import static danielbatchford.pathfinding.heuristics.AStarHeuristic.calculate;
 
 class PriorityQueueSearch extends PathFinder {
 
-    ;
+    PriorityQueue<Box> openList;
 
     public List<int[]> findPath(int[] startCord, int[] endCord, Grid grid, Options options, boolean useHeuristic) throws PathFindingException {
         super.findPath(startCord, endCord, grid, options);
 
-        PriorityQueue<Box> queue = new PriorityQueue<>((o1, o2) -> {
+        openList = new PriorityQueue<>((o1, o2) -> {
             if (o1.getF() == o2.getF()) return 0;
             return (o1.getF() > o2.getF()) ? 1 : -1;
         });
 
         start.setG(0);
         start.setF(0);
-        queue.add(start);
+        openList.add(start);
 
-        if(options.attachStateLogger()){
-            stateLogger.add(new State(visited,queue));
+        if (options.attachStateLogger()) {
+            stateLogger.add(new State(closedList, openList));
         }
 
-        List<Box> neighbors;
 
-        while (!(queue.isEmpty())) {
+        while (!(openList.isEmpty())) {
 
-            Box workingBox = queue.poll();
-            visited.add(workingBox);
+            Box workingBox = openList.poll();
+            closedList.add(workingBox);
 
             if (workingBox.equals(end)) {
                 return backTrace(workingBox);
@@ -46,24 +45,24 @@ class PriorityQueueSearch extends PathFinder {
 
             for (Box n : neighbors) {
 
-                if (visited.contains(n) || !n.isWalkable()) {
+                if (closedList.contains(n) || !n.isWalkable()) {
                     continue;
                 }
-                if ((workingBox.getG() + getDistance(workingBox, n)) < n.getG() || !queue.contains(n)) {
+                if ((workingBox.getG() + getDistance(workingBox, n)) < n.getG() || !openList.contains(n)) {
 
                     n.setG(workingBox.getG() + getDistance(workingBox, n));
                     n.setF(n.getG() + ((useHeuristic) ? calculate(workingBox, n) : 0));
 
                     n.setParent(workingBox);
 
-                    if (!queue.contains(n)) {
-                        queue.add(n);
+                    if (!openList.contains(n)) {
+                        openList.add(n);
                     }
                 }
             }
 
-            if(options.attachStateLogger()){
-                stateLogger.add(new State(visited,queue));
+            if (options.attachStateLogger()) {
+                stateLogger.add(new State(closedList, openList));
             }
         }
         throwNoPathFoundError();
