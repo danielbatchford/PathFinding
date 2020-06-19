@@ -51,7 +51,7 @@ class PriorityQueueSearch extends PathFinder {
                 if ((workingBox.getG() + getDistance(workingBox, n)) < n.getG() || !openList.contains(n)) {
 
                     n.setG(workingBox.getG() + getDistance(workingBox, n));
-                    n.setF(n.getG() + ((useHeuristic) ? calculate(workingBox, n) : 0));
+                    n.setF(n.getG() + ((useHeuristic) ? calculate(n, end) : 0));
 
                     n.setParent(workingBox);
 
