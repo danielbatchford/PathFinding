@@ -6,8 +6,8 @@ import java.util.*;
 
 public class State {
 
-    final Set<Box> closedList;
-    final List<Box> openList;
+    public final Set<Box> closedList;
+    public final List<Box> openList;
 
     public State(Set<Box> visited, Collection<Box> queue) {
         this.closedList = new HashSet<Box>(visited);
