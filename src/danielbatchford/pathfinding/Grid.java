@@ -1,7 +1,5 @@
 package danielbatchford.pathfinding;
 
-import danielbatchford.pathfinding.exceptions.PathFindingException;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -12,17 +10,20 @@ public class Grid {
     private final Box[][] boxes;
 
 
-    public Grid(int[] dimensions) throws PathFindingException {
+    public Grid(int[] dimensions) {
 
-        if (dimensions == null) throw new PathFindingException("Grid gimensions provided were null");
-
-        if (dimensions.length != 2) throw new PathFindingException("Dimension specified is not of size 2");
-
+        if (dimensions == null) {
+            System.out.println("Grid dimensions provided were null");
+        }
+        assert dimensions != null;
+        if (dimensions.length != 2) {
+            System.out.println("Dimension specified is not of size 2");
+        }
         if (dimensions[0] <= 0) {
-            throw new PathFindingException("X dimension was <= 0, cannot create grid");
+            System.out.println("X dimension was <= 0, cannot create grid");
         }
         if (dimensions[1] <= 0) {
-            throw new PathFindingException("Y dimension was <= 0, cannot create grid");
+            System.out.println("Y dimension was <= 0, cannot create grid");
         }
         boxes = new Box[dimensions[0]][dimensions[1]];
 
@@ -36,11 +37,15 @@ public class Grid {
 
     }
 
-    public void setWalkable(int[] cord, boolean walkable) throws PathFindingException {
+    public void setWalkable(int[] cord, boolean walkable) {
 
-        if (cord.length != 2) throw new PathFindingException("Co-ordinate specified is not of size 2");
+        if (cord.length != 2) {
+            System.out.println("Co-ordinate specified is not of size 2");
+            return;
+        }
         if (cord[0] < 0 || cord[0] >= dim[0] || cord[1] < 0 || cord[1] >= dim[1]) {
-            throw new PathFindingException("Co-ordinate (" + cord[0] + "," + cord[1] + ") was outside the grid range.");
+            System.out.println("Co-ordinate (" + cord[0] + "," + cord[1] + ") was outside the grid range.");
+            return;
         }
         boxes[cord[0]][cord[1]].setWalkable(walkable);
 
