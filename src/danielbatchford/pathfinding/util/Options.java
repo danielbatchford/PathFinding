@@ -26,7 +26,7 @@ public class Options {
     }
 
     private void validateDistanceMetric() {
-        if (!(distanceMetric == 'm' || distanceMetric == 'e')) {
+        if (distanceMetric == 'm' || distanceMetric == 'e') {
             return;
         }
         System.out.println("Distance mode \"" + distanceMetric + "\" was not valid");
